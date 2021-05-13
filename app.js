@@ -1,4 +1,8 @@
-var currentImg = undefined,
+
+
+
+window.onload = function(){
+    var currentImg = undefined,
     currentImgProps = {x:0, y:0},
     isZooming = false,
     column = -1,
@@ -51,9 +55,6 @@ function playBoxes(){
     gsap.to(tl, {duration:0.4, timeScale:1, ease:'sine.in', overwrite:true});
   }
 }
-
-
-window.onload = function(){
 
   var _tl = gsap.timeline({onStart:playBoxes})
       .set('.main',        {perspective:800})
