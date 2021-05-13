@@ -1,7 +1,3 @@
-
-
-
-window.onload = function(){
     var currentImg = undefined,
     currentImgProps = {x:0, y:0},
     isZooming = false,
@@ -9,6 +5,7 @@ window.onload = function(){
     mouse = {x:0, y:0},
     delayedPlay;
 
+window.onload = function(){
 console.log("nice");
 
 for (var i=0; i<12; i++){
@@ -35,6 +32,7 @@ for (var i=0; i<12; i++){
     b.tl = gsap.timeline({paused:true, repeat:-1})
       .fromTo(b, {y:[-575,800,800][column], rotation:-0.05}, {duration:[40,35,26][column], y:[800,-575,-575][column], rotation:0.05, ease:'none'})
       .progress(i%4/4)
+}
 }
 
 
