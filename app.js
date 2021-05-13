@@ -5,6 +5,8 @@ var currentImg = undefined,
     mouse = {x:0, y:0},
     delayedPlay;
 
+console.log("nice");
+
 for (var i=0; i<12; i++){
     
     if (i%4==0) column++;
