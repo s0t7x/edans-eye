@@ -1,12 +1,9 @@
-    var currentImg = undefined,
+var currentImg = undefined,
     currentImgProps = {x:0, y:0},
     isZooming = false,
     column = -1,
     mouse = {x:0, y:0},
     delayedPlay;
-
-window.onload = function(){
-console.log("nice");
 
 for (var i=0; i<12; i++){
     
@@ -33,7 +30,6 @@ for (var i=0; i<12; i++){
       .fromTo(b, {y:[-575,800,800][column], rotation:-0.05}, {duration:[40,35,26][column], y:[800,-575,-575][column], rotation:0.05, ease:'none'})
       .progress(i%4/4)
 }
-}
 
 
 function pauseBoxes(b){
@@ -53,6 +49,9 @@ function playBoxes(){
     gsap.to(tl, {duration:0.4, timeScale:1, ease:'sine.in', overwrite:true});
   }
 }
+
+
+window.onload = function(){
 
   var _tl = gsap.timeline({onStart:playBoxes})
       .set('.main',        {perspective:800})
