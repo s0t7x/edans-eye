@@ -4,8 +4,13 @@ const galleryArray = [];
 let tweens = [];
 
 const photoContainerSelector = "#photoContainer";
-const photosPerRow = 16;
-const visiblePerRow = 8;
+
+const urlParams = new URLSearchParams(window.location.search);
+const paramPhotosPerRow = urlParams.get("photosPerRow");
+const paramVisiblePerRow = urlParams.get("visiblePerRow");
+
+const photosPerRow = paramPhotosPerRow ? paramPhotosPerRow : 16;
+const visiblePerRow = paramVisiblePerRow ? paramVisiblePerRow : 8;
 
 let pWidth = window.innerWidth / visiblePerRow;
 let pHeight = pWidth;
