@@ -72,8 +72,9 @@ html, body {
 }
 
 #fullscreenPhoto {
-    background-image: none;
-    background:#0d1117;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color:#0d1117;
     position: absolute;
     top: 0;
     left: 0;

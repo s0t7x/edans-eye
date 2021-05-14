@@ -116,7 +116,7 @@ function createPhotoBoxes() {
             photoBox.style.width = pWidth;
             photoBox.style.height = pHeight;
             photoBox.style.backgroundImage = "url('" + galleryArray[i % galleryArray.length] + "')";
-            photoBox.style.opacity = 0.5;
+            photoBox.style.opacity = 0.7;
             //photoBox.innerHTML = i;
             photoBox.onclick = (e) => {
                 let fs = document.getElementById("fullscreenPhoto");
@@ -140,7 +140,7 @@ function createPhotoBoxes() {
                             ease: "back",
                             duration: 0.2,
                             scale: 1,
-                            opacity: 0.8
+                            opacity: 0.7
                         });
                     }
                 })
@@ -154,7 +154,7 @@ function createPhotoBoxes() {
                     ease: "back",
                     duration: 0.2,
                     scale: 1,
-                    opacity: 0.8
+                    opacity: 0.7
                 });
             };
             currentRow.appendChild(photoBox);
