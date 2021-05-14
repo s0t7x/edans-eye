@@ -62,6 +62,7 @@ html, body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     min-width: 10px;
     min-height: 10px;
 }

@@ -4,16 +4,20 @@ const galleryArray = [];
 let tweens = [];
 
 const photoContainerSelector = "#photoContainer";
-const photosPerRow = 16;
-const visiblePerRow = 8;
+const photosPerRow = 7;
+const visiblePerRow = 5;
 
 let pWidth = window.innerWidth / visiblePerRow;
 let pHeight = pWidth;
 
+function seedGalleryArrayPicsum(size_n) {
+    for(let i = 0; i < size_n; i++)
+        galleryArray.push("https://picsum.photos/1920/1080?a=" + i);
+}
 
 function seedGalleryArray(size_n) {
     for(let i = 0; i < size_n; i++)
-        galleryArray.push("https://picsum.photos/1920/1080?a=" + i);
+        galleryArray.push("gallery/" + i + ".webp");
 }
 
 function toFixed(x) {
@@ -96,7 +100,7 @@ function createPhotoBoxes() {
             photoBox.style.width = pWidth;
             photoBox.style.height = pHeight;
             photoBox.style.backgroundImage = "url('" + galleryArray[i % galleryArray.length] + "')";
-            photoBox.innerHTML = i;
+            //photoBox.innerHTML = i;
             photoBox.onclick = (e) => {
                 let fs = document.getElementById("fullscreenPhoto");
                 if(fs.classList.contains("closed")){
@@ -126,13 +130,13 @@ function createPhotoBoxes() {
                 //     scale: 1.5
                 // });
             };
-            photoBox.onmouseleave = (e) => {
-                gsap.to(e.target, {
-                    ease: "back",
-                    duration: 0.2,
-                    scale: 1
-                });
-            };
+            // photoBox.onmouseleave = (e) => {
+            //     gsap.to(e.target, {
+            //         ease: "back",
+            //         duration: 0.2,
+            //         scale: 1
+            //     });
+            // };
             currentRow.appendChild(photoBox);
             currentAmount++;
             i++;
@@ -198,6 +202,6 @@ function animateRows() {
     });
 }
 
-seedGalleryArray(40);
+seedGalleryArray(9);
 createPhotoBoxes();
 animateRows();
