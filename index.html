@@ -1,17 +1,24 @@
 <html>
   <head>
     <title>Edan's Eye</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </head>
   <body>
     <div id="photoContainer"></div>
     <div id="titleBanner"><span>EDAN's</span>EY<div>E</div></div>
     <div id="fullscreenPhoto" class="closed" onclick="closeFullscreenPhoto()"></div> 
-
+    <div id="bar" class="left">
+      <a class="github-button" href="https://github.com/s0t7x/edans-eye/fork" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork s0t7x/edans-eye on GitHub">Fork</a>
+    </div>
+    <div id="bar" class="right">
+      <a class="github-button" href="https://github.com/s0t7x/edans-eye/archive/HEAD.zip" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-download" data-size="large" aria-label="Download s0t7x/edans-eye on GitHub">Download</a>
+    </div>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'></script>
     <script type='text/javascript' src='app.js'></script>
   </body>
