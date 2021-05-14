@@ -3,6 +3,7 @@ html, body {
     height:100%;
     overflow:hidden;
     background:#0d1117;
+    margin: 0;
 }
 
 .bgContainer {
@@ -16,7 +17,8 @@ html, body {
 #titleBanner {
     font-family: 'Marcellus', serif;
     color: #ffffff;
-    width: 100%;
+    width: 500px;
     max-width: 500px;
+    
     margin: 0 auto;
 }
