@@ -17,8 +17,11 @@ html, body {
 #titleBanner {
     font-family: 'Marcellus', serif;
     color: #ffffff;
-    width: 500px;
     max-width: 500px;
-    
     margin: 0 auto;
+    font-size: 64px;
+}
+
+#titleBanner span {
+    font-size: 48px;
 }
