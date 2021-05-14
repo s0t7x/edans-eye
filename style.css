@@ -12,3 +12,7 @@ html, body {
     overflow:hidden;
     position:absolute;
 }
+
+#titleBanner {
+    font-family: 'Marcellus', serif;
+}
