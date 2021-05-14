@@ -4,8 +4,8 @@ const galleryArray = [];
 let tweens = [];
 
 const photoContainerSelector = "#photoContainer";
-const photosPerRow = 7;
-const visiblePerRow = 5;
+const photosPerRow = 16;
+const visiblePerRow = 8;
 
 let pWidth = window.innerWidth / visiblePerRow;
 let pHeight = pWidth;
@@ -144,13 +144,14 @@ function createPhotoBoxes() {
                 //     scale: 1.5
                 // });
             };
-            // photoBox.onmouseleave = (e) => {
-            //     gsap.to(e.target, {
-            //         ease: "back",
-            //         duration: 0.2,
-            //         scale: 1
-            //     });
-            // };
+            photoBox.onmouseleave = (e) => {
+                gsap.to(e.target, {
+                    ease: "back",
+                    duration: 0.2,
+                    scale: 1,
+                    opacity: 0.8
+                });
+            };
             currentRow.appendChild(photoBox);
             currentAmount++;
             i++;
@@ -216,7 +217,7 @@ function animateRows() {
     });
 }
 
-seedGalleryArray(9);
+seedGalleryArrayPicsum(40);
 shuffle(galleryArray);
 createPhotoBoxes();
 animateRows();
