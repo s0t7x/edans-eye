@@ -1,7 +1,36 @@
-console.log("app.js loaded");
+class GalleryPhoto {
+    constructor(URL, Description) {
+        this.URI = URL;
+        this.description = Description;
+    }
 
-const galleryArray = [];
+    getURL() {
+        return this.URI;
+    }
+
+    getDesc() {
+        return this.description;
+    }
+}
+
+let galleryArray = [
+    new GalleryPhoto("https://i.postimg.cc/nLsw87vN/2019-08-24-64939657.png", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,"),
+    new GalleryPhoto("https://i.postimg.cc/d1rH3YNB/2019-08-24-71867775.png", "test das ist ja absoluter wahnsinn *-*"),
+    new GalleryPhoto("https://i.postimg.cc/XNK10nCN/2020-06-11-27505435.png", "test das ist ja absoluter wahnsinn *-*"),
+    new GalleryPhoto("https://i.postimg.cc/8zYtb5q4/2021-05-03-46499576.png", "test das ist ja absoluter wahnsinn *-*"),
+    new GalleryPhoto("https://i.postimg.cc/C5wNKfqh/2021-05-09-55872444.png", "test das ist ja absoluter wahnsinn *-*"),
+    new GalleryPhoto("https://i.postimg.cc/LXKDrW4Z/2021-05-09-74510079.png", "test das ist ja absoluter wahnsinn *-*"),
+    new GalleryPhoto("https://i.postimg.cc/HsZ2pnsm/2021-05-11-13578048.png", "test das ist ja absoluter wahnsinn *-*"),
+    new GalleryPhoto("https://i.postimg.cc/05ZGfjSS/2021-05-11-13661008.png", "test das ist ja absoluter wahnsinn *-*"),
+    new GalleryPhoto("https://i.postimg.cc/FznLQfbn/2021-05-11-20028924.png", "test das ist ja absoluter wahnsinn *-*"),
+];
+
 let tweens = [];
+let photoDescriptionTween = gsap.to("#photoDescription", {
+    opacity: 0.8,
+    duration: 3,
+    ease: "power1"
+});;
 
 const photoContainerSelector = "#photoContainer";
 
@@ -9,8 +38,8 @@ const urlParams = new URLSearchParams(window.location.search);
 const paramPhotosPerRow = urlParams.get("photosPerRow");
 const paramVisiblePerRow = urlParams.get("visiblePerRow");
 
-const photosPerRow = paramPhotosPerRow ? paramPhotosPerRow : 16;
-const visiblePerRow = paramVisiblePerRow ? paramVisiblePerRow : 8;
+const photosPerRow = paramPhotosPerRow ? paramPhotosPerRow : 8;
+const visiblePerRow = paramVisiblePerRow ? paramVisiblePerRow : 6;
 
 let pWidth = window.innerWidth / visiblePerRow;
 let pHeight = pWidth;
@@ -28,12 +57,12 @@ function shuffle(a) {
 
 function seedGalleryArrayPicsum(size_n) {
     for(let i = 0; i < size_n; i++)
-        galleryArray.push("https://picsum.photos/1920/1080?a=" + i);
+        galleryArray.push(new GalleryPhoto("https://picsum.photos/1920/1080?a=" + i, "A Lorem Ipsum Photo provided by Picsum.Photos"));
 }
 
 function seedGalleryArray(size_n) {
     for(let i = 0; i < size_n; i++)
-        galleryArray.push("gallery/" + i + ".webp");
+        galleryArray.push(new GalleryPhoto("gallery/" + i + ".webp", ""));
 }
 
 function toFixed(x) {
@@ -115,7 +144,8 @@ function createPhotoBoxes() {
             photoBox.classList.add("photoBox");
             photoBox.style.width = pWidth;
             photoBox.style.height = pHeight;
-            photoBox.style.backgroundImage = "url('" + galleryArray[i % galleryArray.length] + "')";
+            photoBox.style.backgroundImage = "url('" + galleryArray[i % galleryArray.length].getURL() + "')";
+            photoBox.dataset.description = galleryArray[i % galleryArray.length].getDesc();
             photoBox.style.opacity = 0.7;
             //photoBox.innerHTML = i;
             photoBox.onclick = (e) => {
@@ -123,7 +153,11 @@ function createPhotoBoxes() {
                 if(fs.classList.contains("closed")){
                     fs.classList.remove("closed");
                     fs.style.backgroundImage = e.target.style.backgroundImage;
+                    fs.querySelector("#photoDescription").innerText = e.target.dataset.description
+                    photoDescriptionTween.pause();
+                    photoDescriptionTween.progress(0);
                     fs.classList.add("open");
+                    photoDescriptionTween.play();
                 }
             }
             photoBox.onmouseenter = (e) => {
@@ -220,7 +254,9 @@ function animateRows() {
     });
 }
 
-seedGalleryArrayPicsum(40);
+seedGalleryArrayPicsum(9);
 shuffle(galleryArray);
 createPhotoBoxes();
 animateRows();
+
+console.log("app.js loaded");

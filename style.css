@@ -10,7 +10,7 @@ html, body {
     position: absolute;
     font-family: 'Marcellus', serif;
     color: #ffffff;
-    background-color: #0d1117E0;
+    /* background-color: #0d1117E0; */
     max-width: 500px;
     margin: 0 auto;
     font-size: 10.5vw;
@@ -75,6 +75,7 @@ html, body {
 #fullscreenPhoto {
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     background-color:#0d1117;
     position: absolute;
     top: 0;
@@ -95,20 +96,42 @@ html, body {
 
 #bar {
     position: absolute;
-    top:50%;
-    transform: translateY(-50%);
+    top:100%;
+    transform: translateY(-100%);
     background-color: #0d1117E0;
     z-index: 99;
 }
 
 #bar.left {
-    padding: 0.5vw 0.5vw 0.5vw 2vw;
+    padding: 10px;
     left: 0;
 }
 
 #bar.right {
-    padding: 0.5vw 2vw 0.5vw 0.5vw;
+    padding: 10px;
     right: 0;
     /* left: 100vw;
     transform: translateX(-100%); */
+}
+
+#photoDescription {
+    padding: 20px;
+    position: absolute;
+    color: white;
+    font-family: 'Marcellus', serif;
+    background-color: #0d1117;
+    display: block;
+    text-align: justify;
+    /* margin: auto; */
+    min-width: 100px;
+    max-width: 700px;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 0;
+    z-index: 200;
+}
+
+#photoDescription:hover {
+    opacity: 1;
 }
