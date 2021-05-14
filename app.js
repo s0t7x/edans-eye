@@ -186,10 +186,9 @@ function animateRows() {
     rows.forEach((row, index) => {
         gsap.set("#_photoRow-"+index+" .photoBox", {
             x: i => (i % photosPerRow) * pWidth,
-            y: 0//pHeight * index
+            y: 0
         });
         if(Math.random() < 0.5){
-            // right
             tweens[index] = gsap.to("#_photoRow-"+index+" .photoBox", {
                 duration: Math.random() * 20 + 30,
                 ease: "none",
@@ -204,7 +203,6 @@ function animateRows() {
                 repeat: -1
             });
         } else {
-            // left
             tweens[index] = gsap.to("#_photoRow-"+index+" .photoBox", {
                 duration: Math.random() * 20 + 30,
                 ease: "none",
