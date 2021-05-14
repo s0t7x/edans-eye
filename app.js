@@ -14,7 +14,7 @@ for (var i=0; i<12; i++){
     
     gsap.set(b, {
       attr:{ id:'b'+i, class:'photoBox pb-col'+column },
-      backgroundImage:'url(https://assets.codepen.io/721952/'+i+'.jpg)',
+      backgroundImage:'url(https://picsum.photos/1920/1080?a='+i+')',
       backgroundSize:'cover',
       backgroundPosition:'center',
       overflow:'hidden',
