@@ -1,29 +1,23 @@
 class GalleryPhoto {
     constructor(URL, Description) {
-        this.URI = URL;
+        this.url = URL;
         this.description = Description;
-    }
-
-    getURL() {
-        return this.URI;
-    }
-
-    getDesc() {
-        return this.description;
     }
 }
 
-let galleryArray = [
-    new GalleryPhoto("https://i.postimg.cc/nLsw87vN/2019-08-24-64939657.png", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,"),
-    new GalleryPhoto("https://i.postimg.cc/d1rH3YNB/2019-08-24-71867775.png", "test das ist ja absoluter wahnsinn *-*"),
-    new GalleryPhoto("https://i.postimg.cc/XNK10nCN/2020-06-11-27505435.png", "test das ist ja absoluter wahnsinn *-*"),
-    new GalleryPhoto("https://i.postimg.cc/8zYtb5q4/2021-05-03-46499576.png", "test das ist ja absoluter wahnsinn *-*"),
-    new GalleryPhoto("https://i.postimg.cc/C5wNKfqh/2021-05-09-55872444.png", "test das ist ja absoluter wahnsinn *-*"),
-    new GalleryPhoto("https://i.postimg.cc/LXKDrW4Z/2021-05-09-74510079.png", "test das ist ja absoluter wahnsinn *-*"),
-    new GalleryPhoto("https://i.postimg.cc/HsZ2pnsm/2021-05-11-13578048.png", "test das ist ja absoluter wahnsinn *-*"),
-    new GalleryPhoto("https://i.postimg.cc/05ZGfjSS/2021-05-11-13661008.png", "test das ist ja absoluter wahnsinn *-*"),
-    new GalleryPhoto("https://i.postimg.cc/FznLQfbn/2021-05-11-20028924.png", "test das ist ja absoluter wahnsinn *-*"),
-];
+// let galleryArray = [
+//     new GalleryPhoto("https://i.postimg.cc/nLsw87vN/2019-08-24-64939657.png", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,"),
+//     new GalleryPhoto("https://i.postimg.cc/d1rH3YNB/2019-08-24-71867775.png", "test das ist ja absoluter wahnsinn *-*"),
+//     new GalleryPhoto("https://i.postimg.cc/XNK10nCN/2020-06-11-27505435.png", "test das ist ja absoluter wahnsinn *-*"),
+//     new GalleryPhoto("https://i.postimg.cc/8zYtb5q4/2021-05-03-46499576.png", "test das ist ja absoluter wahnsinn *-*"),
+//     new GalleryPhoto("https://i.postimg.cc/C5wNKfqh/2021-05-09-55872444.png", "test das ist ja absoluter wahnsinn *-*"),
+//     new GalleryPhoto("https://i.postimg.cc/LXKDrW4Z/2021-05-09-74510079.png", "test das ist ja absoluter wahnsinn *-*"),
+//     new GalleryPhoto("https://i.postimg.cc/HsZ2pnsm/2021-05-11-13578048.png", "test das ist ja absoluter wahnsinn *-*"),
+//     new GalleryPhoto("https://i.postimg.cc/05ZGfjSS/2021-05-11-13661008.png", "test das ist ja absoluter wahnsinn *-*"),
+//     new GalleryPhoto("https://i.postimg.cc/FznLQfbn/2021-05-11-20028924.png", "test das ist ja absoluter wahnsinn *-*"),
+// ];
+
+let galleryArray = [];
 
 let tweens = [];
 let photoDescriptionTween = gsap.to("#photoDescription", {
@@ -63,6 +57,11 @@ function seedGalleryArrayPicsum(size_n) {
 function seedGalleryArray(size_n) {
     for(let i = 0; i < size_n; i++)
         galleryArray.push(new GalleryPhoto("gallery/" + i + ".webp", ""));
+}
+
+async function seedGalleryArrayDB() {
+    let galleryArrayFetchResult = await fetch("/fetch");
+    galleryArray = await galleryArrayFetchResult.json();
 }
 
 function toFixed(x) {
@@ -144,8 +143,8 @@ function createPhotoBoxes() {
             photoBox.classList.add("photoBox");
             photoBox.style.width = pWidth;
             photoBox.style.height = pHeight;
-            photoBox.style.backgroundImage = "url('" + galleryArray[i % galleryArray.length].getURL() + "')";
-            photoBox.dataset.description = galleryArray[i % galleryArray.length].getDesc();
+            photoBox.style.backgroundImage = "url('" + galleryArray[i % galleryArray.length].url + "')";
+            photoBox.dataset.description = galleryArray[i % galleryArray.length].description;
             photoBox.style.opacity = 0.7;
             //photoBox.innerHTML = i;
             photoBox.onclick = (e) => {
@@ -254,9 +253,9 @@ function animateRows() {
     });
 }
 
-seedGalleryArrayPicsum(9);
-shuffle(galleryArray);
-createPhotoBoxes();
-animateRows();
-
-console.log("app.js loaded");
+seedGalleryArrayDB().then(() => {
+    shuffle(galleryArray);
+    createPhotoBoxes();
+    animateRows();
+    console.log("app.js loaded");
+});

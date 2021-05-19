@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <div align="center" style="position:absolute; width: 100%; max-width: 500px; left:50%; top:50%; transform: translate(-50%, -50%);">
+            <input id="key" value="" onkeydown="loginOnEnter()"/>
+            <br/>
+            <button onclick="login()">login</button>
+        </div>
+        <script>
+            function login() {
+                window.location = '/login/' + document.querySelector('#key').value;
+            }
+            function loginOnEnter() {
+                if(event.key === 'Enter') {
+                    login();
+                }
+            }
+        </script>
+    </body>
+</html>
